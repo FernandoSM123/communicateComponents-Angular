@@ -1,0 +1,21 @@
+<div class="mainContainer">
+    <h1>Parent Component</h1>
+    <div class="box1">
+        <div class="subBox1-1">
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Enviar mensaje a hijos</mat-label>
+                    <input #parentInput matInput placeholder="Mensaje">
+                </mat-form-field>
+                <button id="btnParent" (click)="setMessage(parentInput.value)" mat-raised-button color="primary">Enviar</button>
+            </div>
+        </div>
+        <div class="subBox1-2">
+            <p><b>Mensaje de hijos a padre :</b> {{fromChildsMessage}}</p>
+        </div>
+    </div>
+    <div class="box2">
+        <app-first-child [parentMessage]="toChildMessage" (childMessage)="getMessage($event)"></app-first-child>
+        <app-second-child [parentMessage]="toChildMessage" (childMessage)="getMessage($event)"></app-second-child>
+    </div>
+</div>

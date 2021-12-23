@@ -16,10 +16,6 @@ h1{
     margin-bottom: 3rem;
 }
 
-.subBox1-1{
-    padding-top: 1rem;
-}
-
 .box1 > div{
     display: flex;
     flex-direction: column;
@@ -27,6 +23,14 @@ h1{
     background-color: #e6e6e6;
     border-radius: 1rem;
     width: min(450px,95%);
+}
+
+.subBox1-1{
+    padding-top: 1rem;
+}
+
+.subBox1-1 div{
+    margin-bottom: 1rem;
 }
 
 #btnParent{
@@ -39,6 +43,11 @@ h1{
 
 .subBox1-2 p{
     margin-top: 1rem;
+}
+
+p{
+    word-break: break-all;
+    margin:1rem;
 }
 
 .box2{

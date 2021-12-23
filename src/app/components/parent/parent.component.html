@@ -2,16 +2,20 @@
     <h1>Parent Component</h1>
     <div class="box1">
         <div class="subBox1-1">
-            <div>
+            <div [formGroup]="myForm">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Enviar mensaje a hijos</mat-label>
-                    <input #parentInput matInput placeholder="Mensaje">
+                    <input #parentInput matInput required placeholder="Enviar Mensaje a hijos" formControlName="parent">
+                    <mat-error *ngIf="parent?.errors?.required">
+                        Message required
+                    </mat-error>
                 </mat-form-field>
-                <button id="btnParent" (click)="setMessage(parentInput.value)" mat-raised-button color="primary">Enviar</button>
+                <button mat-raised-button id="btnParent" (click)="setMessage(parentInput.value)" color="primary"
+                    [disabled]="parent?.invalid">Enviar</button>
             </div>
         </div>
         <div class="subBox1-2">
-            <p><b>Mensaje de hijos a padre :</b> {{fromChildsMessage}}</p>
+            <p><b>Mensaje de hijos a padre :</b> {{fromChildsMessage ? fromChildsMessage : 'Sin mensaje'}}</p>
         </div>
     </div>
     <div class="box2">

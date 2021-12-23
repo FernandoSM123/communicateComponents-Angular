@@ -1,25 +1,33 @@
-<div class="mainBox">
+<div class="mainBox" [formGroup]="myForm">
     <h1>Second Child</h1>
     <div>
         <div>
             <mat-form-field color="warn" appearance="fill">
                 <mat-label>Enviar mensaje a padre</mat-label>
-                <input #parentMessageInput matInput placeholder="Mensaje">
+                <input #parentMessageInput matInput required placeholder="Mensaje" formControlName="parent">
+                <mat-error *ngIf="parent?.errors?.required">
+                    Message required
+                </mat-error>
             </mat-form-field>
-            <button (click)="setParentMessage(parentMessageInput.value)" mat-raised-button color="warn">Enviar</button>
+            <button (click)="setParentMessage(parentMessageInput.value)" mat-raised-button color="warn"
+                [disabled]="parent?.invalid">Enviar</button>
         </div>
     </div>
-    
+
     <div>
         <div>
             <mat-form-field color="accent" appearance="fill">
                 <mat-label>Enviar mensaje a hermano</mat-label>
-                <input #silbingMessageInput matInput placeholder="Mensaje">
+                <input #silbingMessageInput matInput required placeholder="Mensaje" formControlName="silbings">
+                <mat-error *ngIf="silbings?.errors?.required">
+                    Message required
+                </mat-error>
             </mat-form-field>
-            <button (click)="setSilbingMessage(silbingMessageInput.value)" mat-raised-button color="accent">Enviar</button>
+            <button (click)="setSilbingMessage(silbingMessageInput.value)" mat-raised-button color="accent"
+                [disabled]="silbings?.invalid">Enviar</button>
         </div>
     </div>
-    
-    <p><b>Mensaje de padre: </b> {{parentMessage}}</p>
+
+    <p><b>Mensaje de padre: </b> {{parentMessage ? parentMessage : 'Sin mensaje'}}</p>
     <p><b>Mensaje de hermano: </b> {{messageService.message}}</p>
-    </div>
+</div>
